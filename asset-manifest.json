@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Routear/frontend/static/css/main.523f09c5.chunk.css",
+    "main.js": "/Routear/frontend/static/js/main.edc0343e.chunk.js",
+    "main.js.map": "/Routear/frontend/static/js/main.edc0343e.chunk.js.map",
+    "runtime-main.js": "/Routear/frontend/static/js/runtime-main.4675694f.js",
+    "runtime-main.js.map": "/Routear/frontend/static/js/runtime-main.4675694f.js.map",
+    "static/js/2.f0c9aa7c.chunk.js": "/Routear/frontend/static/js/2.f0c9aa7c.chunk.js",
+    "static/js/2.f0c9aa7c.chunk.js.map": "/Routear/frontend/static/js/2.f0c9aa7c.chunk.js.map",
+    "index.html": "/Routear/frontend/index.html",
+    "precache-manifest.5168e2cc8936917df396f3a86a8ade44.js": "/Routear/frontend/precache-manifest.5168e2cc8936917df396f3a86a8ade44.js",
+    "service-worker.js": "/Routear/frontend/service-worker.js",
+    "static/css/main.523f09c5.chunk.css.map": "/Routear/frontend/static/css/main.523f09c5.chunk.css.map",
+    "static/js/2.f0c9aa7c.chunk.js.LICENSE.txt": "/Routear/frontend/static/js/2.f0c9aa7c.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/Routear/frontend/static/media/logo.ee7cd8ed.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4675694f.js",
+    "static/js/2.f0c9aa7c.chunk.js",
+    "static/css/main.523f09c5.chunk.css",
+    "static/js/main.edc0343e.chunk.js"
+  ]
+}
