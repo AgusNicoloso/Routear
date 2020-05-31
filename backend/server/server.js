@@ -1,10 +1,45 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 
-app.get("/", function (req, res) {
-  res.send("Hello World");
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
+
+//GET
+app.get("/user", function (req, res) {
+  res.json("Get user");
 });
 
-app.listen(3000, () => {
-  console.log("Escuchando puerto: ", 3000);
+//POST
+app.post("/user", function (req, res) {
+  let body = req.body;
+
+  if (body.nombre === undefined) {
+  } else {
+  }
+
+  res.json({
+    body,
+  });
+});
+
+//PUT
+app.put("/user/:id", function (req, res) {
+  let id = req.params.id;
+  res.json({
+    id,
+  });
+});
+
+//DELETE
+app.delete("/user", function (req, res) {
+  res.json("Delete user");
+});
+
+//LISTENER
+app.listen(3001, () => {
+  console.log("Escuchando puerto: ", 3001);
 });
