@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
     let objLoading = false;
     const operation = ownProps.openData.operation
     switch (operation) {
-        case "create":
+        case "create": 
             opPath = 'create';
             break;
         case "update":
@@ -66,21 +66,29 @@ export function withFormModal(mapPropsToValues, validationSchema, WrappedCompone
             />
         }
     }
-    return withModal(connect(mapStateToProps, mapDispatchToProps)(withFormik({ 
+    return withModal((withFormik({ 
         validationSchema: validationSchema,
         handleSubmit: (values, { isSubmitting, props }) => {
           if (!isSubmitting) {
-              const { openData, obj, createResource, updateResource } = props;
+              const { openData, obj, modalId } = props;
               const operation = openData.operation
               if (operation === 'create' || operation === 'clone') {
-                if (values.magnitudes) {
-                    values.magnitudes = values.magnitudes.map(e => Object.assign({}, e, {value: [e.value[0].replace(',','.')]}))
-                }
-                createResource(values)
+                  console.log("ENTROO", createResource)
+                    // var url = "http://localhost:3001/users/";
+                    // var method = "POST";
+                    // var postData = values;
+                    // var shouldBeAsync = true;
+                    // var request = new XMLHttpRequest();
+                    // request.onload = function () {z
+                    //     var status = request.status; // HTTP response status, e.g., 200 for "200 OK"
+                    //     var data = request.responseText; // Returned data, e.g., an HTML document.
+                    // }
+                    // request.open(method, url, shouldBeAsync);
+
+                    // request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                    // request.send(postData);
+                createResource(modalId, values)
               } else if (operation === 'update') {
-                if (values.magnitudes) {
-                    values.magnitudes = values.magnitudes.map(e => Object.assign({}, e, {value: [e.value[0].replace(',','.')]}))
-                }
                 updateResource(values, obj.id)
               }
           }
@@ -116,7 +124,7 @@ export function withResourceModal(mapPropsToValues, name, description, validatio
         }
 
         render () {
-            const { modalId, t, submitted, dirty, resetForm, submitting, handleSubmit, objLoading, onSubmitted, operation} = this.props
+            const { modalId, submitted, dirty, resetForm, submitting, handleSubmit, objLoading, onSubmitted, operation} = this.props
             return (
               <FormModal
                 submitted={submitted}

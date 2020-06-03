@@ -57,11 +57,7 @@ class UserModal extends Component {
         super(props)
         this.firstInput = React.createRef();
     }
-
-    componentDidMount() {
-        this.props.searchRoles();
-    }
-
+    
     render () {
         return (
             <Fragment>
@@ -112,6 +108,6 @@ export default withResourceModal(
     "Usuario",
     "",
     validationSchema,
-    connect(mapStateToProps, mapDispatchToProps)(UserModal)
+    (UserModal)
 );
 

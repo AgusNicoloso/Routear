@@ -42,6 +42,7 @@ export function cleanResource(resource, path) {
 }
 
 export function createResource(resource, body, path) {
+    console.log(resource, body, path)
     return {
         type: CREATE,
         action: CREATE,

@@ -40,7 +40,7 @@ class FormModal extends Component {
     }
 
     render () {
-      const {isModalOpen, toggleModal, children, onSubmit, name, t, loading, modalLevel, dirty} = this.props;
+      const {isModalOpen, toggleModal, children, onSubmit, name, loading, modalLevel, dirty} = this.props;
       return (
         <Modal
           size="lg"
@@ -56,7 +56,7 @@ class FormModal extends Component {
                      
                      <ul className="nav list-inline ml-auto float-right">
                       { dirty && (
-                        <li className="list-inline-item pl-2 right"><p className="mb-0"><small><em>({t('cambios sin guardar')})</em></small></p></li>
+                        <li className="list-inline-item pl-2 right"><p className="mb-0"><small><em>({'cambios sin guardar'})</em></small></p></li>
                       )}
                       { this.props.working > 0 && (
                           <li className="list-inline-item pl-2"> <InlineSpinner size={14} /> </li>
