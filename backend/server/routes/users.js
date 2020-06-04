@@ -22,7 +22,7 @@ app.get("/users", function (req, res) {
         });
       }
 
-      User.count({ state: true }, (err, count) => {
+      User.countDocuments({ state: true }, (err, count) => {
         res.json({
           ok: true,
           count,
