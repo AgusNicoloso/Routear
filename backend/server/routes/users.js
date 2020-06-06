@@ -3,8 +3,12 @@ const bcrypt = require("bcrypt");
 const _ = require("underscore");
 const User = require("../models/user");
 const app = express();
+const {
+  verificationToken,
+  verificationRole,
+} = require("../middlewares/authentication");
 //GET
-app.get("/users", function (req, res) {
+app.get("/users", verificationToken, (req, res) => {
   let from = req.query.from || 0;
   from = Number(from);
 
@@ -33,7 +37,7 @@ app.get("/users", function (req, res) {
 });
 
 //POST
-app.post("/users", function (req, res) {
+app.post("/users", [verificationToken, verificationRole], function (req, res) {
   let body = req.body;
   let user = new User({
     name: body.name,
@@ -57,7 +61,10 @@ app.post("/users", function (req, res) {
 });
 
 //PUT
-app.put("/users/:id", function (req, res) {
+app.put("/users/:id", [verificationToken, verificationRole], function (
+  req,
+  res
+) {
   let id = req.params.id;
   let body = _.pick(req.body, ["name", "email", "img", "role", "state"]);
 
@@ -81,7 +88,10 @@ app.put("/users/:id", function (req, res) {
 });
 
 //DELETE
-app.delete("/users/:id", function (req, res) {
+app.delete("/users/:id", [verificationToken, verificationRole], function (
+  req,
+  res
+) {
   let id = req.params.id;
   let changeState = {
     state: false,

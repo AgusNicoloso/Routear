@@ -1,5 +1,4 @@
 require("./config/config.js");
-const MongoClient = require("mongodb").MongoClient;
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
@@ -7,19 +6,19 @@ const bodyParser = require("body-parser");
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(require("./routes/index"));
 // parse application/json
+app.use(bodyParser.json());
+
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-  });
-  app.use(bodyParser.json());
-  app.use(require("./routes/users"));
-  if (process.env.NODE_ENV === "dev") {
+  );
+  next();
+});
+if (process.env.NODE_ENV === "dev") {
   mongoose.connect(
     "mongodb://localhost:27017/routear",
     { dbName: "routear", useUnifiedTopology: true, useNewUrlParser: true },
