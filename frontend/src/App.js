@@ -5,6 +5,7 @@ import AddButton from './components/AddButton';
 import { Button } from 'reactstrap';
 import ModalsProvider from './contexts/ModalsContext';
 import { Modals } from './modals/index'
+import Home from './views/Home';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Modals/>
           <img src={logo} className="App-logo" alt="logo" />
         </header>
+        <Home/>
       </div>
     </ModalsProvider>
   );

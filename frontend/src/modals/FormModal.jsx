@@ -5,7 +5,8 @@ import InlineSpinner from "../components/InlineSpinner";
 import { Modal } from 'reactstrap';
 import { withModal } from '../contexts/ModalsContext.jsx'
 import ErrorMessage from '../forms/ErrorMessage';
-  
+import axios from 'axios';
+
 class FormModal extends Component {
     componentWillUnmount() {
         clearTimeout(this.timerId);
@@ -39,6 +40,17 @@ class FormModal extends Component {
       this.props.onClose()
     }
 
+    onSubmit = () => {
+      const { onSubmit, children } = this.props
+      console.log(this.props, onSubmit)
+      axios.post('http://localhost:3001/users', children.values)
+      .then(response => {
+          console.log('Respuesta', response)
+      }).catch(e => {
+          console.log(e);
+      });
+    }
+
     render () {
       const {isModalOpen, toggleModal, children, onSubmit, name, loading, modalLevel, dirty} = this.props;
       return (
@@ -64,7 +76,7 @@ class FormModal extends Component {
                     </ul>
                 </ModalHeader>
                 <ModalBody>
-                    <Form onSubmit={onSubmit}>
+                    <Form onSubmit={this.onSubmit}>
                         {children}
                         <input type="submit" className="hidden"/>
                         <ErrorMessage name="non_field_errors" skipTouch={true} />
@@ -72,7 +84,7 @@ class FormModal extends Component {
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" type="submit"
-                            onClick={onSubmit}>{'Guardar'}</Button>{' '}
+                            onClick={this.onSubmit}>{'Guardar'}</Button>{' '}
                     <Button color="warning" className="text-white" onClick={this.onClose}>{'Cancelar'}</Button>
                 </ModalFooter>
               </Fragment>

@@ -19,13 +19,10 @@ const mapDispatchToProps = (dispatch) => {
 const mapPropsToValues = ({obj}) => {
     return {
             username: obj ? obj.username : '',
-            first_name: obj ? obj.first_name : '',
-            last_name: obj ? obj.last_name : '',
+            name: obj ? obj.name : '',
             email: obj ? obj.email : '',
             password: '',
             confirmPassword: '',
-            roles: obj && obj.roles ? obj.roles: [],
-            is_master: obj? obj.is_master: false,
     }
 }
 
@@ -63,13 +60,8 @@ class UserModal extends Component {
             <Fragment>
                 <Row>
                     <Col>
-                        <LabelledGroup htmlFor="first_name" name={'Nombre'}>
-                            <InputText name="first_name" innerRef={this.firstInput}/>
-                        </LabelledGroup>
-                    </Col>
-                    <Col>
-                        <LabelledGroup htmlFor="last_name" name={'Apellido'}>
-                            <InputText name="last_name"/>
+                        <LabelledGroup htmlFor="name" name={'Nombre'}>
+                            <InputText name="name" innerRef={this.firstInput}/>
                         </LabelledGroup>
                     </Col>
                 </Row>
@@ -108,6 +100,6 @@ export default withResourceModal(
     "Usuario",
     "",
     validationSchema,
-    (UserModal)
+    connect(mapStateToProps, mapDispatchToProps)(UserModal)
 );
 

@@ -72,21 +72,10 @@ export function withFormModal(mapPropsToValues, validationSchema, WrappedCompone
           if (!isSubmitting) {
               const { openData, obj, modalId } = props;
               const operation = openData.operation
+              console.log("////asdasd")
               if (operation === 'create' || operation === 'clone') {
                   console.log("ENTROO", createResource)
-                    // var url = "http://localhost:3001/users/";
-                    // var method = "POST";
-                    // var postData = values;
-                    // var shouldBeAsync = true;
-                    // var request = new XMLHttpRequest();
-                    // request.onload = function () {z
-                    //     var status = request.status; // HTTP response status, e.g., 200 for "200 OK"
-                    //     var data = request.responseText; // Returned data, e.g., an HTML document.
-                    // }
-                    // request.open(method, url, shouldBeAsync);
-
-                    // request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                    // request.send(postData);
+                    
                 createResource(modalId, values)
               } else if (operation === 'update') {
                 updateResource(values, obj.id)
