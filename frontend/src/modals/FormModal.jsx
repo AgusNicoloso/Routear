@@ -42,13 +42,13 @@ class FormModal extends Component {
 
     onSubmit = () => {
       const { onSubmit, children } = this.props
-      console.log(this.props, onSubmit)
-      axios.post('http://localhost:3001/users', children.values)
-      .then(response => {
-          console.log('Respuesta', response)
-      }).catch(e => {
-          console.log(e);
-      });
+      // axios.post('http://localhost:3001/users', children.props.values)
+      // .then(response => {
+      //     console.log('Respuesta', response)
+      // }).catch(e => {
+      //     console.log(e);
+      // });
+      onSubmit()
     }
 
     render () {
