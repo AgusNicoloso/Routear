@@ -13,9 +13,6 @@ function App() {
     <ModalsProvider>
       <div className="App">
         <header className="App-header">
-          <AddButton resource={"users"}>
-            <Button color={"primary"}>Prueba</Button>
-          </AddButton>
           <Modals/>
           <img src={logo} className="App-logo" alt="logo" />
         </header>

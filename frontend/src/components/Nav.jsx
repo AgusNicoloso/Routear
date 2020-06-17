@@ -1,8 +1,15 @@
 import React from 'react';
 import { MapPin } from 'react-feather'
+import {withModals} from "../contexts/ModalsContext";
 
 class Nav extends React.Component {
+
+   openLoginModal = () => {
+      this.props.openModal('login', {})
+   }
+
     render() {
+       console.log(this.props)
         return (
          <header class="header">
             <div class="container" style={{height:60}}>
@@ -14,7 +21,8 @@ class Nav extends React.Component {
                            </div>
                            <nav className="main_nav ml-auto mt-n2" >
                               <ul>
-                                    <li class="active"><a href="index.html">Home</a></li>
+                                 <li className="active"><a href="">Home</a></li>
+                                 <li className="active clickable" onClick={this.openLoginModal}>Login</li>
                               </ul>
                            </nav>
                            
@@ -28,4 +36,4 @@ class Nav extends React.Component {
     }
 }
 
-export default Nav;
+export default withModals(Nav);

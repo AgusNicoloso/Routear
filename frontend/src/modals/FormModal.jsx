@@ -52,7 +52,8 @@ class FormModal extends Component {
     }
 
     render () {
-      const {isModalOpen, toggleModal, children, onSubmit, name, loading, modalLevel, dirty} = this.props;
+      const {isModalOpen, toggleModal, children, onSubmit, name, loading, modalLevel, dirty, modalId} = this.props;
+      console.log(this.props)
       return (
         <Modal
           size="lg"
@@ -84,7 +85,7 @@ class FormModal extends Component {
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" type="submit"
-                            onClick={this.onSubmit}>{'Guardar'}</Button>{' '}
+                            onClick={this.onSubmit}>{modalId === 'login'? 'Ingresar' : 'Guardar'}</Button>{' '}
                     <Button color="warning" className="text-white" onClick={this.onClose}>{'Cancelar'}</Button>
                 </ModalFooter>
               </Fragment>

@@ -255,3 +255,10 @@ input[type=checkbox].form-control {
 .email-app-menu .list-group-item {
   padding: 0.5rem 0.8rem;
 }
+
+.clickable {
+   cursor: pointer;
+   .link {
+      color: #009DA0;
+   }
+}
