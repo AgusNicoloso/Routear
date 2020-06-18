@@ -9,13 +9,14 @@ const {
 } = require("../middlewares/authentication");
 //GET
 app.get("/users", verificationToken, (req, res) => {
+  let filter = req.query;
   let from = req.query.from || 0;
   from = Number(from);
-
-  let to = req.query.from || 5;
+  let to = req.query.to || 5;
   to = Number(to);
-
-  User.find({ state: true }, "name email role state img")
+  delete filter.from;
+  delete filter.to;
+  User.find({ state: true, $and: [filter] }, "name email role state img")
     .skip(from)
     .limit(to)
     .exec((err, userDB) => {
@@ -37,7 +38,7 @@ app.get("/users", verificationToken, (req, res) => {
 });
 
 //POST
-app.post("/users", [verificationToken, verificationRole], function (req, res) {
+app.post("/users", function (req, res) {
   let body = req.body;
   let user = new User({
     name: body.name,
