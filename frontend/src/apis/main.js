@@ -69,6 +69,7 @@ export const refreshToken = async (token) => {
 }
 
 export const getResource = async (token, resource, id ) => {
+    console.log("ENTROOO ACAAAA GETRESOURCE", settings.API_URL)
     return fetchMain(
         settings.API_URL + `/api/${resource}/${id}/`,
         'GET',

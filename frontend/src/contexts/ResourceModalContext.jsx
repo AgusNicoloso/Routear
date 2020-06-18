@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import FormModal from '../modals/FormModal'
 import { connect } from 'react-redux'
 import objectPath from '../libs/object-path'
 import { createResource, updateResource } from '../flows/ResourceFlow'
 import { withModal } from '../contexts/ModalsContext.jsx'
 import { withFormik } from 'formik'
+import FormModal from '../modals/FormModal'
 
 const mapStateToProps = (state, ownProps) => {
     let opPath = '';
@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
     let objLoading = false;
     const operation = ownProps.openData.operation
     switch (operation) {
-        case "create": 
+        case "create":
             opPath = 'create';
             break;
         case "update":
@@ -66,18 +66,19 @@ export function withFormModal(mapPropsToValues, validationSchema, WrappedCompone
             />
         }
     }
-    return withModal((withFormik({ 
+    return withModal(connect(mapStateToProps, mapDispatchToProps)(withFormik({ 
         validationSchema: validationSchema,
         handleSubmit: (values, { isSubmitting, props }) => {
           if (!isSubmitting) {
-              const { openData, obj, modalId } = props;
+              const { openData, obj, createResource, updateResource } = props;
               const operation = openData.operation
-              console.log("////asdasd")
               if (operation === 'create' || operation === 'clone') {
-                  console.log("ENTROO", createResource)
-                    
-                createResource(modalId, values)
+                  console.log("ENTROOOOOOOOOOOOO")
+                createResource(values)
               } else if (operation === 'update') {
+                if (values.magnitudes) {
+                    values.magnitudes = values.magnitudes.map(e => Object.assign({}, e, {value: [e.value[0].replace(',','.')]}))
+                }
                 updateResource(values, obj.id)
               }
           }

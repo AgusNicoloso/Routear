@@ -43,4 +43,4 @@ class AddButton extends Component {
     }
 }
 
-export default withModals((AddButton));
+export default withModals(AddButton);
