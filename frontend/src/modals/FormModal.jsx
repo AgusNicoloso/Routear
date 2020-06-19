@@ -42,18 +42,23 @@ class FormModal extends Component {
 
     onSubmit = () => {
       const { onSubmit, children } = this.props
-      // axios.post('http://localhost:3001/users', children.props.values)
-      // .then(response => {
-      //     console.log('Respuesta', response)
-      // }).catch(e => {
-      //     console.log(e);
-      // });
+      axios.post(`http://localhost:3001/${this.props.modalId}`, children.props.values, {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+      .then(response => {
+          console.log('Respuesta', response)
+          this.props.closeModal(this.props.modalId)
+      }).catch(e => {
+          console.log(e);
+      });
+      console.log("ENTRO ACA ONSUBMIT", this.props)
       onSubmit()
     }
 
     render () {
       const {isModalOpen, toggleModal, children, onSubmit, name, loading, modalLevel, dirty, modalId} = this.props;
-      console.log(this.props)
       return (
         <Modal
           size="lg"
@@ -77,7 +82,7 @@ class FormModal extends Component {
                     </ul>
                 </ModalHeader>
                 <ModalBody>
-                    <Form onSubmit={this.onSubmit}>
+                    <Form onSubmit={onSubmit}>
                         {children}
                         <input type="submit" className="hidden"/>
                         <ErrorMessage name="non_field_errors" skipTouch={true} />

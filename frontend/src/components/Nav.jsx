@@ -9,7 +9,6 @@ class Nav extends React.Component {
    }
 
     render() {
-       console.log(this.props)
         return (
          <header class="header">
             <div class="container" style={{height:60}}>
